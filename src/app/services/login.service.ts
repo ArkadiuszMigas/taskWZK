@@ -1,20 +1,50 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { environment } from '../../env/enviroment';
+import { sessionStorageService } from '../services/session-storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+type LoginBody = { email: string; password: string; device: string };
+type LoginResponse = { token: string };
+
+@Injectable({ providedIn: 'root' })
 export class LoginService {
-  private _isLoggedIn = false;
+  private isLoggedInSubject = new BehaviorSubject<boolean>(
+    !!this.sessionStorage.getToken()
+  );
+  readonly isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClientModule) {}
+  constructor(
+    private http: HttpClient,
+    private sessionStorage: sessionStorageService
+  ) {}
 
   get isLoggedIn(): boolean {
-    return this._isLoggedIn;
+    return this.isLoggedInSubject.value;
   }
 
-  // call this after a successful login (we'll wire API later)
-  setLoggedIn(value: boolean): void {
-    this._isLoggedIn = value;
+  login(
+    email: string,
+    password: string,
+    device: string
+  ): Observable<LoginResponse> {
+    const body: LoginBody = { email, password, device };
+    return this.http
+      .post<LoginResponse>(`${environment.apiUrl}/login`, body)
+      .pipe(
+        tap((res) => {
+          this.sessionStorage.setToken(res.token);
+          this.isLoggedInSubject.next(true);
+        })
+      );
+  }
+
+  logout(): Observable<void> {
+    return this.http.get<void>(`${environment.apiUrl}/logout`).pipe(
+      tap(() => {
+        this.sessionStorage.clearToken();
+        this.isLoggedInSubject.next(false);
+      })
+    );
   }
 }

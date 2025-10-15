@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://test.tyonline.pl",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "" }
+  }
+}
