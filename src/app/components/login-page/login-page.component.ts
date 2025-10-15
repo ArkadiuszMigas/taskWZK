@@ -18,10 +18,6 @@ function detectBrowserName(ua: string = navigator.userAgent): string {
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
-  // username: string = '';
-  // password: string = '';
-  // error: string | null = null;
-
   submitting = false;
   serverError: string | null = null;
 
@@ -36,23 +32,9 @@ export class LoginPageComponent {
     private fb: FormBuilder
   ) {}
 
-  // logIn(): void {
-  //   this.error = null;
-  //   const device = detectBrowserName();
-
-  //   this.loginService.login(this.username, this.password, device).subscribe({
-  //     next: () =>
-  //       this.loginService
-  //         .fetchCurrentUser()
-  //         .subscribe(() => this.router.navigateByUrl('/')),
-  //     error: (err) => {
-  //       this.error = err?.error?.message;
-  //       //console.error(err);
-  //     },
-  //   });
-  // }
-
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
   submit() {
     this.serverError = null;
@@ -62,7 +44,10 @@ export class LoginPageComponent {
     }
     this.submitting = true;
 
-    const { email, password } = this.form.value as { email: string; password: string };
+    const { email, password } = this.form.value as {
+      email: string;
+      password: string;
+    };
     const device = detectBrowserName();
 
     this.loginService.login(email, password, device).subscribe({
