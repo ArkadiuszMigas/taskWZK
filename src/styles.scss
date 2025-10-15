@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.background{
+    background-color: #550b14;
+}
+
+.foreground{
+    background-color: #c2ac8f;
+}
+
+.buttons {
+  font-size: 1.2vw;
+  background-color: #c2ac8f;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.5vw 1vw;
+  cursor: pointer;
+  color: #550b14;
+  font-weight: bold;
+}
+.buttons:hover {
+  background-color: antiquewhite;
+}

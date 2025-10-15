@@ -1,1 +1,42 @@
-<p>main-page works!</p>
+<app-header></app-header>
+<div class="d-flex justify-content-center vh-100 foreground overflow-auto">
+  <div class="container py-4">
+    <h2 class="mainHeader mb-3">Aktualności</h2>
+
+    <div *ngIf="loadingNews" class="loading">Ładowanie…</div>
+
+    <div
+      *ngIf="error"
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <span class="row w-full error">{{ error }}</span>
+      <button class="row w-25 d-flex justify-content-center align-items-center btnError" (click)="fetchNews()">
+        Spróbuj ponownie
+      </button>
+    </div>
+
+    <div class="row g-3" *ngIf="!loadingNews && !error">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let n of news">
+        <div class="newsCard h-100">
+          <div class="cardBody">
+            <h5 class="cardTitle mb-2">{{ n.title || "Bez tytułu" }}</h5>
+            <p
+              class="date mb-2"
+              *ngIf="n.date"
+            >
+              {{n.date | date : "dd.MM.yyyy HH:mm" }}
+            </p>
+            <div class="cardContent" [innerHTML]="n.content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="!loadingNews && !error && news.length === 0"
+      class="noNews"
+    >
+      Brak newsów do wyświetlenia.
+    </div>
+  </div>
+</div>

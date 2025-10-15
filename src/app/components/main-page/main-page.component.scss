@@ -1,0 +1,84 @@
+.mainHeader {
+  font-size: 3vw;
+  font-weight: bold;
+  margin-bottom: 2vw;
+  color: #550b14;
+}
+
+.loading {
+  font-size: 2.5vw;
+  font-weight: bold;
+  color: #550b14;
+  min-height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newsCard {
+  border: 0.3vw solid #550b14;
+  border-radius: 0.5vw;
+  padding: 1vw;
+  margin-bottom: 1.5vw;
+  background-color: wheat;
+}
+
+.newsCard ::shadow {
+  border: #7e6961;
+  box-shadow: 0.5vw 0.5vw #7e6961;
+  font-size: 1.2vw;
+  color: #7e6961;
+  font-weight: bold;
+  background-color: wheat;
+  border-radius: 0.5vw;
+  padding: 0.5vw;
+  margin-bottom: 1vw;
+  width: 100%;
+}
+
+.newsCard .cardBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.newsCard .cardTitle {
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #550b14;
+}
+
+.newsCard .date {
+  font-size: 1.2vw;
+  color: #550b14;
+  margin-bottom: 0.5vw;
+}
+
+.newsCard .cardContent {
+  font-size: 1.2vw;
+  color: #550b14;
+  flex-grow: 1;
+}
+.noNews {
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #550b14;
+}
+
+.error {
+  font-size: 1.2vw;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 1vw;
+}
+
+.btnError {
+  font-size: 1.2vw;
+  background-color: red;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.5vw 1vw;
+  cursor: pointer;
+  color: wheat;
+  font-weight: bold;
+}

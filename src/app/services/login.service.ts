@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { environment } from '../../env/enviroment';
 import { sessionStorageService } from '../services/session-storage.service';
 
-type LoginBody = { email: string; password: string; device: string };
+interface LoginBody {
+  email: string;
+  password: string;
+  device: string;
+}
+
 type LoginResponse = { token: string };
+interface User {
+  id: number;
+  email: string;
+  name: string;
+  username: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -13,6 +24,8 @@ export class LoginService {
     !!this.sessionStorage.getToken()
   );
   readonly isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -46,5 +59,17 @@ export class LoginService {
         this.isLoggedInSubject.next(false);
       })
     );
+  }
+
+  fetchCurrentUser() {
+    return this.http.get<User>(`${environment.apiUrl}/login`).pipe(
+      tap((user) => {
+        this.userSubject.next(user);
+      })
+    );
+  }
+
+  currentUser() {
+    return this.userSubject.value;
   }
 }

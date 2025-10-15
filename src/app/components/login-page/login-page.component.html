@@ -1,14 +1,81 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="p-4 border rounded" style="min-width: 300px;">
-        <h2>Login Page</h2>
+<!-- <div class="d-flex justify-content-center align-items-center vh-100 backgroundLogin">
+    <div class="loginCard p-4 rounded" style="min-width: 300px;">
+        <h2 class="cardHeader">Login Page</h2>
         <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username">
+            <label for="username" class="label">Username</label>
+            <input type="text" class="input" id="username" [(ngModel)]="username">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" [(ngModel)]="password">
+            <label for="password" class="label">Password</label>
+            <input type="password" class="input" id="password" [(ngModel)]="password">
         </div>
-        <button class="btn btn-primary" (click)="logIn()">Login</button>
+        <button class="buttons" (click)="logIn()">Login</button>
     </div>
+</div> -->
+
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 background"
+>
+  <div
+    class="foreground p-4 rounded shadow-sm"
+    style="min-width: 320px; max-width: 420px; width: 100%"
+  >
+    <h2 class="cardHeader mb-4 text-center">Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="label">Email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          [class.is-invalid]="f.email.touched && f.email.invalid"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="username"
+        />
+        <div class="invalid-feedback" *ngIf="f.email.touched && f.email.errors">
+          <span *ngIf="f.email.errors['required']">Email is required.</span>
+          <span *ngIf="f.email.errors['email']"
+            >Enter a valid email address.</span
+          >
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="label">Password</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          [class.is-invalid]="f.password.touched && f.password.invalid"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="f.password.touched && f.password.errors"
+        >
+          <span *ngIf="f.password.errors['required']"
+            >Password is required.</span
+          >
+          <span *ngIf="f.password.errors['minlength']">
+            Password must be at least
+            {{ f.password.errors["minlength"].requiredLength }} characters.
+          </span>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <button
+        class="logInBtn"
+        type="submit"
+        [disabled]="submitting || form.invalid"
+      >
+        {{ submitting ? "Logging in…" : "Login" }}
+      </button>
+    </form>
+  </div>
 </div>
