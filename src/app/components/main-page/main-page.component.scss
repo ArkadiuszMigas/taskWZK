@@ -82,3 +82,52 @@
   color: wheat;
   font-weight: bold;
 }
+
+@media (max-width: 752px) {
+  .mainHeader {
+    font-size: 8vw;
+    margin-bottom: 4vw;
+  }
+
+  .loading {
+    font-size: 7vw;
+  }
+
+  .newsCard ::shadow {
+    font-size: 3vw;
+    padding: 2vw;
+    margin-bottom: 3vw;
+    box-shadow: 1.5vw 1.5vw #7e6961;
+    border-radius: 2.5vw;
+  }
+
+  .newsCard .cardTitle {
+    font-size: 5.5vw;
+  }
+
+  .newsCard .date {
+    font-size: 4vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .newsCard .cardContent {
+    font-size: 4vw;
+  }
+
+  .noNews {
+    font-size: 5vw;
+    padding-top: 2vw;
+  }
+
+  .error {
+    font-size: 6vw;
+    margin-bottom: 3vw;
+  }
+
+  .btnError {
+    padding: 1.5vw;
+    width: 50% !important;
+    border-radius: 2vw;
+    font-size: 5vw;
+  }
+}

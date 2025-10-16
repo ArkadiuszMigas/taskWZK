@@ -8,3 +8,13 @@
     font-weight: bold;
     color: #c2ac8f;
 }
+
+@media (max-width: 752px) {
+    .header{
+        padding: 6vw;
+    }
+
+    .headerLabel{
+        font-size: 7vw;
+    }
+}

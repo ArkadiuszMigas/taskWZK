@@ -20,3 +20,19 @@
 .buttons:hover {
   background-color: antiquewhite;
 }
+
+@media (max-width: 752px) {
+    .background{
+        background-color: #550b14;
+    }
+    
+    .foreground{
+        background-color: #c2ac8f;
+    }
+
+    .buttons {
+      font-size: 5vw;
+      border-radius: 1.5vw;
+      padding: 1.5vw 3vw;
+    }
+}

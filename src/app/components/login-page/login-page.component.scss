@@ -54,3 +54,52 @@
   border-color: 0.2vw red;
 }
 
+.loginBox {
+  min-width: 320px;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 0.5vw;
+}
+
+@media (max-width: 752px) {
+  .cardHeader {
+    font-size: 7.5vw;
+    margin-bottom: 3vw;
+  }
+
+  .label {
+    font-size: 5vw;
+  }
+
+  .input {
+    font-size: 5vw;
+    padding: 1.5vw;
+    margin-bottom: 3vw;
+  }
+
+  .logInBtn {
+    font-size: 6vw;
+    padding: 1.5vw;
+    border-radius: 2vw;
+  }
+
+  .invalid-feedback {
+    font-size: 4vw;
+  }
+
+  .form-control {
+    font-size: 5vw;
+    border-radius: 2vw;
+    padding: 1.5vw;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 0 0.5vw rgba(85, 11, 20, 0.25);
+  }
+
+  .loginBox {
+    min-width: 80%;
+    max-width: fit-content;
+    border-radius: 2vw;
+  }
+}
