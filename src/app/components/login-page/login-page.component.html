@@ -54,6 +54,9 @@
         </div>
       </div>
       <!-- Submit Button -->
+      <div *ngIf="serverError" class="label mb-2">
+        {{ serverError }}
+      </div>
       <button
         class="logInBtn"
         type="submit"

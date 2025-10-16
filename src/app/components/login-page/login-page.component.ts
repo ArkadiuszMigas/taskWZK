@@ -53,7 +53,8 @@ export class LoginPageComponent {
     this.loginService.login(email, password, device).subscribe({
       next: () => this.router.navigateByUrl('/'),
       error: (err) => {
-        this.serverError = err?.error?.message || 'Login failed';
+        this.serverError = err?.error?.message || err?.error?.messages?.email || 'Login failed';
+        console.error(err);
         this.submitting = false;
       },
       complete: () => (this.submitting = false),
